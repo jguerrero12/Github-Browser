@@ -1,8 +1,8 @@
-# Project 3 - *Github Browser
+# Project 3 - Github Browser
 
 Github Browser is a Github search app using the [GitHub API](https://developer.github.com/v3/).
 
-Time spent: 4.4 hours spent in total
+Time spent: 4.5 hours spent in total
 
 ## User Stories
 
@@ -13,13 +13,13 @@ The following **required** functionality is completed:
 
 The following **additional** features are implemented:
 
-- [x] add cool app icon.
+- [x] added cool app icon.
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/jguerrero12/Github-Browser/blob/master/githubbrowserDemo_2.gif?raw=true' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
