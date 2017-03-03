@@ -90,7 +90,9 @@ class GithubRepo: CustomStringConvertible {
         q = q + " stars:>\(settings.minStars)"
         params["q"] = q
         
-        params["sort"] = "stars"
+        if let sort = settings.sort{
+        params["sort"] = sort
+        }
         params["order"] = "desc"
         
         return params

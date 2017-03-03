@@ -12,7 +12,7 @@ import Foundation
 struct GithubRepoSearchSettings {
     var searchString: String?
     var minStars = 0
-    
+    var sort: String?
     
     init() {
         
