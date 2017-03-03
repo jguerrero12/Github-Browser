@@ -10,7 +10,7 @@ import UIKit
 import MBProgressHUD
 
 // Main ViewController
-class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SettingsPresentingViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var searchBar: UISearchBar!
@@ -49,10 +49,31 @@ class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func didSaveSettings(settings: GithubRepoSearchSettings){
+        searchSettings = settings
+        doSearch()
+    }
+    
+    func didCancelSettings(){
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! tableCell
         cell.repo = repos![indexPath.row]
+        
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navController = segue.destination as! UINavigationController
+        let vc = navController.topViewController as! SearchSettingsViewController
+        vc.delegate = self
+        vc.settings = searchSettings
     }
     
     // Perform the search.
@@ -79,6 +100,7 @@ class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableV
         })
     }
 }
+
 
 // SearchBar methods
 extension RepoResultsViewController: UISearchBarDelegate {
