@@ -11,14 +11,14 @@ import UIKit
 class tableCell: UITableViewCell {
 
     
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var forkCountLabel: UILabel!
-    @IBOutlet weak var starCountLabel: UILabel!
-    @IBOutlet weak var ownerLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var repoImage: UIImageView!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var forkCountLabel: UILabel!
+    @IBOutlet private weak var starCountLabel: UILabel!
+    @IBOutlet private weak var ownerLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var repoImage: UIImageView!
     
-    var repo: GithubRepo! {
+    var repo: GithubRepo! { // upon update, also update the cell's labels with new info.
         didSet{
             descriptionLabel.text = repo.repoDescription
             forkCountLabel.text = "\(repo.forks!)"

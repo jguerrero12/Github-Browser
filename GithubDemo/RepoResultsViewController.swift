@@ -13,9 +13,9 @@ import MBProgressHUD
 class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SettingsPresentingViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    var searchBar: UISearchBar!
+    private var searchBar: UISearchBar!
     var searchSettings = GithubRepoSearchSettings()
-    var repos: [GithubRepo]?
+    private var repos: [GithubRepo]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,13 +53,13 @@ class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func didSaveSettings(settings: GithubRepoSearchSettings){
+    func didSaveSettings(settings: GithubRepoSearchSettings){ // upon saving settings from searchsettingsVC, update searchsettings and do a search to update the tableview cells.
         searchSettings = settings
         doSearch()
     }
     
     func didCancelSettings(){
-        
+        // do nothing upon canceling settings view (return to previous state before going to settings view).
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,7 +69,7 @@ class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // initialize the settings view controller to communicate with self, and have self's current settings.
         let navController = segue.destination as! UINavigationController
         let vc = navController.topViewController as! SearchSettingsViewController
         vc.delegate = self

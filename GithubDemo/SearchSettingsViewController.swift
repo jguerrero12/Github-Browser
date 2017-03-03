@@ -8,19 +8,19 @@
 
 import UIKit
 
-enum PrefRowIdentifier : String {
+enum PrefRowIdentifier : String { // will be used to identify a cell row, and initialize it's title to the string.
     case MinStars = "Minimum Stars"
-    //case Languages = "Filter by Language"
+    //case sort..
 }
 
 class SearchSettingsViewController: UIViewController,UITableViewDataSource, PreferenceSwitchCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    weak var delegate: RepoResultsViewController?
+    weak var delegate: RepoResultsViewController? // parent, used to pass up settings values.
     
-    let tableStructure: [[PrefRowIdentifier]] = [[.MinStars]]// ,[.Languages, .ShowPhotos]]
+    let tableStructure: [[PrefRowIdentifier]] = [[.MinStars]]// ,[sort]], this will hold the structure of the tableview (groups and rows) and identify the corresponding cells.
     
-    var prefValues: [PrefRowIdentifier: Int] = [:]
+    var prefValues: [PrefRowIdentifier: Int] = [:] // this will hold the cell's values
     
     // should be set by the class that instantiates this view controller
     var settings: GithubRepoSearchSettings!{
@@ -31,10 +31,9 @@ class SearchSettingsViewController: UIViewController,UITableViewDataSource, Pref
         }
     }
     
-    func settingsFromTableData() -> GithubRepoSearchSettings {
+    private func settingsFromTableData() -> GithubRepoSearchSettings {
         var set = GithubRepoSearchSettings()
         set.minStars = prefValues[.MinStars] ?? set.minStars
-        //set.language = prefValues[.PlaySounds] ?? ret.playSounds
         return set
     }
     
@@ -83,13 +82,13 @@ class SearchSettingsViewController: UIViewController,UITableViewDataSource, Pref
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onSave(_ sender: Any) {
+    @IBAction private func onSave(_ sender: Any) {
         delegate?.didSaveSettings(settings: settings)
         self.dismiss(animated: true) {
         }
     }
     
-    @IBAction func onCancel(_ sender: Any) {
+    @IBAction private func onCancel(_ sender: Any) {
         delegate?.didCancelSettings()
         self.dismiss(animated: true) {
         }

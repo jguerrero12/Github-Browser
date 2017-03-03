@@ -30,7 +30,7 @@ class PreferenceSwitchCell: UITableViewCell {
     
     @IBAction func onSliderValueChanged(_ sender: Any) {
         let value = starSlider.value
-        delegate?.preferenceSliderCellDidChange(cell: self, newValue: value)
+        delegate?.preferenceSliderCellDidChange(cell: self, newValue: starSlider.value)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
